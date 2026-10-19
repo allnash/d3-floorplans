@@ -1,0 +1,234 @@
+/* d3-floorplan default styles. Override any token on .fp-container. */
+.fp-container {
+  --fp-zone-fill: #38bdf8;
+  --fp-zone-stroke: #0284c7;
+  --fp-zone-fill-opacity: 0.22;
+  --fp-zone-fill-opacity-hover: 0.34;
+  --fp-selected: #f59e0b;
+  --fp-handle-fill: #ffffff;
+  --fp-handle-stroke: #0284c7;
+  --fp-drawing: #a855f7;
+  --fp-label: #0f172a;
+  --fp-label-halo: rgba(255, 255, 255, 0.85);
+  --fp-sensor-halo: rgba(56, 189, 248, 0.25);
+  --fp-bg: #f8fafc;
+  --fp-menu-bg: #ffffff;
+  --fp-menu-fg: #0f172a;
+  --fp-menu-border: rgba(15, 23, 42, 0.12);
+  --fp-menu-hover: rgba(15, 23, 42, 0.06);
+  --fp-menu-danger: #dc2626;
+  --fp-zoom: 1;
+
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--fp-bg);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.fp-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  cursor: grab;
+}
+.fp-svg:active {
+  cursor: grabbing;
+}
+.fp-mode-draw .fp-svg,
+.fp-mode-place .fp-svg {
+  cursor: crosshair;
+}
+
+.fp-floor-image {
+  pointer-events: none;
+  image-rendering: auto;
+}
+
+/* ---- zones ---- */
+.fp-zone {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.fp-zone__shape {
+  fill: var(--fp-zone-fill);
+  fill-opacity: var(--fp-zone-fill-opacity);
+  stroke: var(--fp-zone-stroke);
+  stroke-width: calc(2px / var(--fp-zoom));
+  stroke-linejoin: round;
+  cursor: move;
+  transition: fill-opacity 0.15s ease;
+}
+.fp-readonly .fp-zone__shape,
+.fp-mode-draw .fp-zone__shape,
+.fp-mode-place .fp-zone__shape {
+  cursor: inherit;
+}
+.fp-mode-select .fp-zone:hover .fp-zone__shape {
+  fill-opacity: var(--fp-zone-fill-opacity-hover);
+}
+.fp-zone.fp-selected .fp-zone__shape {
+  stroke: var(--fp-selected);
+  stroke-width: calc(3px / var(--fp-zoom));
+}
+.fp-zone.fp-dragging .fp-zone__shape {
+  fill-opacity: var(--fp-zone-fill-opacity-hover);
+}
+
+.fp-handle {
+  fill: var(--fp-handle-fill);
+  stroke: var(--fp-handle-stroke);
+  stroke-width: calc(2px / var(--fp-zoom));
+  r: calc(5px / var(--fp-zoom));
+  cursor: crosshair;
+  transition: r 0.12s ease;
+}
+.fp-handle:hover,
+.fp-handle.fp-dragging {
+  r: calc(7px / var(--fp-zoom));
+}
+.fp-zone__handles {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+.fp-mode-select .fp-zone.fp-selected .fp-zone__handles,
+.fp-mode-select .fp-zone:hover .fp-zone__handles {
+  opacity: 1;
+  pointer-events: all;
+}
+.fp-readonly .fp-zone__handles {
+  display: none;
+}
+
+/* ---- labels ---- */
+.fp-label {
+  font: 500 calc(13px / var(--fp-zoom)) / 1 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  fill: var(--fp-label);
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+  paint-order: stroke fill;
+  stroke: var(--fp-label-halo);
+  stroke-width: calc(3px / var(--fp-zoom));
+  stroke-linejoin: round;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.fp-sensor__label {
+  dominant-baseline: hanging;
+  font-size: calc(11px / var(--fp-zoom));
+}
+.fp-no-labels .fp-label {
+  display: none;
+}
+
+/* ---- sensors ---- */
+.fp-sensor {
+  transform-box: fill-box;
+  transform-origin: center;
+  cursor: move;
+}
+.fp-readonly .fp-sensor,
+.fp-mode-draw .fp-sensor,
+.fp-mode-place .fp-sensor {
+  cursor: inherit;
+}
+.fp-sensor__halo {
+  fill: var(--fp-sensor-halo);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.fp-mode-select .fp-sensor:hover .fp-sensor__halo {
+  opacity: 1;
+}
+.fp-sensor.fp-selected .fp-sensor__halo {
+  opacity: 1;
+  fill: var(--fp-selected);
+  fill-opacity: 0.3;
+}
+.fp-sensor.fp-dragging .fp-sensor__icon {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* ---- drawing ---- */
+.fp-drawing__fill {
+  fill: var(--fp-drawing);
+  fill-opacity: 0.12;
+  stroke: none;
+  pointer-events: none;
+}
+.fp-drawing__line {
+  fill: none;
+  stroke: var(--fp-drawing);
+  stroke-width: calc(2px / var(--fp-zoom));
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.fp-drawing__rubber {
+  stroke: var(--fp-drawing);
+  stroke-width: calc(1.5px / var(--fp-zoom));
+  stroke-dasharray: calc(6px / var(--fp-zoom)) calc(4px / var(--fp-zoom));
+  pointer-events: none;
+}
+.fp-drawing__point {
+  stroke: var(--fp-drawing);
+  pointer-events: none;
+}
+.fp-drawing__start {
+  pointer-events: all;
+  cursor: pointer;
+  r: calc(7px / var(--fp-zoom));
+}
+.fp-drawing__start--near {
+  fill: var(--fp-drawing);
+  r: calc(9px / var(--fp-zoom));
+}
+
+/* ---- context menu ---- */
+.fp-context-menu {
+  position: fixed;
+  z-index: 10000;
+  min-width: 160px;
+  padding: 4px;
+  background: var(--fp-menu-bg, #fff);
+  color: var(--fp-menu-fg, #0f172a);
+  border: 1px solid var(--fp-menu-border, rgba(15, 23, 42, 0.12));
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+  font: 13px/1.2 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  transform-origin: top left;
+}
+.fp-context-menu__item {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.fp-context-menu__item:hover,
+.fp-context-menu__item:focus-visible {
+  background: var(--fp-menu-hover, rgba(15, 23, 42, 0.06));
+  outline: none;
+}
+.fp-context-menu__item--danger {
+  color: var(--fp-menu-danger, #dc2626);
+}
+
+@media (prefers-color-scheme: dark) {
+  .fp-context-menu {
+    --fp-menu-bg: #1e293b;
+    --fp-menu-fg: #f1f5f9;
+    --fp-menu-border: rgba(255, 255, 255, 0.12);
+    --fp-menu-hover: rgba(255, 255, 255, 0.08);
+    --fp-menu-danger: #f87171;
+  }
+}

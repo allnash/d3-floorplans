@@ -1,0 +1,292 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#e5e7eb" stroke-width="0.6"/>
+    </pattern>
+    <pattern id="tile" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#f1f5f9"/>
+      <path d="M20 0H0V20" fill="none" stroke="#e2e8f0" stroke-width="0.6"/>
+    </pattern>
+    <pattern id="wood" width="60" height="8" patternUnits="userSpaceOnUse">
+      <rect width="60" height="8" fill="#fbf4ea"/>
+      <path d="M0 8H60" stroke="#efe3d1" stroke-width="0.8"/>
+      <path d="M30 0V8" stroke="#efe3d1" stroke-width="0.6"/>
+    </pattern>
+    <pattern id="carpet" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#f5f7fb"/>
+      <circle cx="6" cy="6" r="0.9" fill="#e3e8f2"/>
+    </pattern>
+    <style>
+      .wall { stroke:#1f2937; stroke-width:8; stroke-linecap:square; fill:none; }
+      .partition { stroke:#374151; stroke-width:4; stroke-linecap:square; fill:none; }
+      .glass { stroke:#60a5fa; stroke-width:3; fill:none; }
+      .door-gap { stroke:#ffffff; stroke-width:10; stroke-linecap:butt; }
+      .door-leaf { stroke:#1f2937; stroke-width:2.5; fill:none; }
+      .door-arc { stroke:#9ca3af; stroke-width:1.2; fill:none; stroke-dasharray:4 3; }
+      .window { stroke:#ffffff; stroke-width:10; }
+      .window-line { stroke:#3b82f6; stroke-width:2; }
+      .furn { fill:#ffffff; stroke:#64748b; stroke-width:1.5; }
+      .furn-dark { fill:#e2e8f0; stroke:#64748b; stroke-width:1.5; }
+      .chair { fill:#ffffff; stroke:#64748b; stroke-width:1.2; }
+      .room { font-size:15px; font-weight:600; fill:#334155; letter-spacing:0.4px; text-anchor:middle; }
+      .area { font-size:11px; fill:#64748b; text-anchor:middle; }
+      .dim { stroke:#94a3b8; stroke-width:1; }
+      .dim-text { font-size:11px; fill:#64748b; text-anchor:middle; }
+      .fixture { fill:#f8fafc; stroke:#64748b; stroke-width:1.5; }
+      .title { font-size:13px; font-weight:700; fill:#0f172a; letter-spacing:1.5px; }
+      .sub { font-size:10px; fill:#475569; letter-spacing:0.5px; }
+    </style>
+  </defs>
+
+  <!-- sheet -->
+  <rect width="1200" height="800" fill="#ffffff"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+
+  <!-- floor finishes -->
+  <rect x="44" y="44" width="312" height="252" fill="url(#carpet)"/>         <!-- conference A -->
+  <rect x="44" y="304" width="312" height="212" fill="url(#carpet)"/>        <!-- conference B -->
+  <rect x="44" y="524" width="312" height="232" fill="url(#wood)"/>          <!-- reception -->
+  <rect x="364" y="44" width="632" height="192" fill="url(#carpet)"/>        <!-- offices + server -->
+  <rect x="1004" y="44" width="152" height="192" fill="url(#tile)"/>         <!-- kitchen -->
+  <rect x="364" y="244" width="632" height="512" fill="url(#carpet)"/>       <!-- open office -->
+  <rect x="1004" y="244" width="152" height="352" fill="url(#tile)"/>        <!-- restrooms -->
+  <rect x="1004" y="604" width="152" height="152" fill="#f3f4f6"/>           <!-- storage -->
+
+  <!-- exterior walls -->
+  <rect x="40" y="40" width="1120" height="720" class="wall"/>
+
+  <!-- interior walls -->
+  <path class="wall" d="M360 40V760"/>
+  <path class="wall" d="M40 300H360"/>
+  <path class="wall" d="M40 520H360"/>
+  <path class="wall" d="M360 240H1160"/>
+  <path class="partition" d="M520 40V240"/>
+  <path class="partition" d="M680 40V240"/>
+  <path class="partition" d="M840 40V240"/>
+  <path class="wall" d="M1000 40V760"/>
+  <path class="partition" d="M1000 440H1160"/>
+  <path class="wall" d="M1000 600H1160"/>
+  <!-- glass front of conference rooms onto corridor -->
+  <path class="glass" d="M362 60V280"/>
+  <path class="glass" d="M362 320V500"/>
+  <!-- phone booth partitions in open office -->
+  <path class="partition" d="M364 560H440V640"/>
+  <path class="partition" d="M364 640H440"/>
+  <path class="partition" d="M364 700H440V756"/>
+
+  <!-- windows (north + west + south) -->
+  <g>
+    <path class="window" d="M120 40H280"/><path class="window-line" d="M120 40H280"/>
+    <path class="window" d="M400 40H500"/><path class="window-line" d="M400 40H500"/>
+    <path class="window" d="M560 40H660"/><path class="window-line" d="M560 40H660"/>
+    <path class="window" d="M720 40H820"/><path class="window-line" d="M720 40H820"/>
+    <path class="window" d="M1040 40H1130"/><path class="window-line" d="M1040 40H1130"/>
+    <path class="window" d="M40 100V240"/><path class="window-line" d="M40 100V240"/>
+    <path class="window" d="M40 340V480"/><path class="window-line" d="M40 340V480"/>
+    <path class="window" d="M460 760H640"/><path class="window-line" d="M460 760H640"/>
+    <path class="window" d="M700 760H900"/><path class="window-line" d="M700 760H900"/>
+    <path class="window" d="M1160 300V400"/><path class="window-line" d="M1160 300V400"/>
+    <path class="window" d="M1160 460V560"/><path class="window-line" d="M1160 460V560"/>
+  </g>
+
+  <!-- doors: gap, leaf, swing arc -->
+  <g>
+    <!-- main entrance (double) on south wall into reception -->
+    <path class="door-gap" d="M160 760H240"/>
+    <path class="door-leaf" d="M160 760V720"/><path class="door-arc" d="M160 720A40 40 0 0 1 200 760"/>
+    <path class="door-leaf" d="M240 760V720"/><path class="door-arc" d="M240 720A40 40 0 0 0 200 760"/>
+    <!-- reception -> open office -->
+    <path class="door-gap" d="M360 660V700"/>
+    <path class="door-leaf" d="M360 700H400"/><path class="door-arc" d="M400 700A40 40 0 0 0 360 660"/>
+    <!-- conference A -->
+    <path class="door-gap" d="M360 250V290"/>
+    <path class="door-leaf" d="M360 290H320"/><path class="door-arc" d="M320 290A40 40 0 0 1 360 250"/>
+    <!-- conference B -->
+    <path class="door-gap" d="M360 470V510"/>
+    <path class="door-leaf" d="M360 510H320"/><path class="door-arc" d="M320 510A40 40 0 0 1 360 470"/>
+    <!-- reception -> conference B -->
+    <path class="door-gap" d="M300 520H340"/>
+    <path class="door-leaf" d="M300 520V480"/><path class="door-arc" d="M300 480A40 40 0 0 1 340 520"/>
+    <!-- offices 1-3 -->
+    <path class="door-gap" d="M470 240H510"/>
+    <path class="door-leaf" d="M470 240V200"/><path class="door-arc" d="M470 200A40 40 0 0 1 510 240"/>
+    <path class="door-gap" d="M630 240H670"/>
+    <path class="door-leaf" d="M630 240V200"/><path class="door-arc" d="M630 200A40 40 0 0 1 670 240"/>
+    <path class="door-gap" d="M790 240H830"/>
+    <path class="door-leaf" d="M790 240V200"/><path class="door-arc" d="M790 200A40 40 0 0 1 830 240"/>
+    <!-- server room -->
+    <path class="door-gap" d="M860 240H900"/>
+    <path class="door-leaf" d="M900 240V200"/><path class="door-arc" d="M900 200A40 40 0 0 0 860 240"/>
+    <!-- kitchen -->
+    <path class="door-gap" d="M1000 180V220"/>
+    <path class="door-leaf" d="M1000 180H1040"/><path class="door-arc" d="M1040 180A40 40 0 0 1 1000 220"/>
+    <!-- restrooms -->
+    <path class="door-gap" d="M1000 280V320"/>
+    <path class="door-leaf" d="M1000 280H1040"/><path class="door-arc" d="M1040 280A40 40 0 0 1 1000 320"/>
+    <path class="door-gap" d="M1000 460V500"/>
+    <path class="door-leaf" d="M1000 460H1040"/><path class="door-arc" d="M1040 460A40 40 0 0 1 1000 500"/>
+    <!-- storage -->
+    <path class="door-gap" d="M1000 640V680"/>
+    <path class="door-leaf" d="M1000 680H1040"/><path class="door-arc" d="M1040 680A40 40 0 0 0 1000 640"/>
+    <!-- phone booths -->
+    <path class="door-gap" d="M440 580V610"/><path class="door-leaf" d="M440 610H470"/>
+    <path class="door-gap" d="M440 650V680"/><path class="door-leaf" d="M440 680H470"/>
+    <path class="door-gap" d="M440 710V740"/><path class="door-leaf" d="M440 740H470"/>
+    <!-- fire exit east -->
+    <path class="door-gap" d="M1160 660V700"/>
+    <path class="door-leaf" d="M1160 660H1120"/><path class="door-arc" d="M1120 660A40 40 0 0 0 1160 700"/>
+  </g>
+
+  <!-- ===== furniture ===== -->
+  <!-- Conference A: long table + 10 chairs -->
+  <g>
+    <rect x="110" y="120" width="180" height="90" rx="12" class="furn-dark"/>
+    <g class="chair">
+      <rect x="125" y="98" width="24" height="14" rx="4"/><rect x="163" y="98" width="24" height="14" rx="4"/>
+      <rect x="201" y="98" width="24" height="14" rx="4"/><rect x="239" y="98" width="24" height="14" rx="4"/>
+      <rect x="125" y="218" width="24" height="14" rx="4"/><rect x="163" y="218" width="24" height="14" rx="4"/>
+      <rect x="201" y="218" width="24" height="14" rx="4"/><rect x="239" y="218" width="24" height="14" rx="4"/>
+      <rect x="88" y="153" width="14" height="24" rx="4"/><rect x="298" y="153" width="14" height="24" rx="4"/>
+    </g>
+    <rect x="60" y="56" width="90" height="6" class="furn-dark"/> <!-- display -->
+  </g>
+  <!-- Conference B: round table -->
+  <g>
+    <circle cx="200" cy="410" r="48" class="furn-dark"/>
+    <g class="chair">
+      <circle cx="200" cy="344" r="9"/><circle cx="247" cy="364" r="9"/><circle cx="266" cy="410" r="9"/>
+      <circle cx="247" cy="456" r="9"/><circle cx="200" cy="476" r="9"/><circle cx="153" cy="456" r="9"/>
+      <circle cx="134" cy="410" r="9"/><circle cx="153" cy="364" r="9"/>
+    </g>
+    <rect x="60" y="316" width="6" height="90" class="furn-dark"/> <!-- whiteboard -->
+  </g>
+  <!-- Reception: curved desk, sofas, plants -->
+  <g>
+    <path d="M90 560h120a30 30 0 0 1 30 30v10h-30v-10h-120z" class="furn-dark"/>
+    <rect x="110" y="548" width="60" height="4" class="furn-dark"/>
+    <rect x="260" y="560" width="70" height="28" rx="6" class="furn"/>
+    <rect x="260" y="640" width="70" height="28" rx="6" class="furn"/>
+    <rect x="300" y="596" width="30" height="40" rx="6" class="furn"/>
+    <circle cx="70" cy="730" r="12" class="furn"/><circle cx="70" cy="730" r="5" fill="#86efac" stroke="none"/>
+    <circle cx="330" cy="730" r="12" class="furn"/><circle cx="330" cy="730" r="5" fill="#86efac" stroke="none"/>
+  </g>
+  <!-- Offices 1-3: desk + chair + cabinet -->
+  <g>
+    <rect x="384" y="70" width="110" height="50" rx="3" class="furn"/><rect x="424" y="130" width="28" height="22" rx="6" class="chair"/><rect x="384" y="190" width="40" height="22" class="furn-dark"/>
+    <rect x="544" y="70" width="110" height="50" rx="3" class="furn"/><rect x="584" y="130" width="28" height="22" rx="6" class="chair"/><rect x="544" y="190" width="40" height="22" class="furn-dark"/>
+    <rect x="704" y="70" width="110" height="50" rx="3" class="furn"/><rect x="744" y="130" width="28" height="22" rx="6" class="chair"/><rect x="704" y="190" width="40" height="22" class="furn-dark"/>
+  </g>
+  <!-- Server room: racks -->
+  <g>
+    <rect x="860" y="64" width="34" height="60" class="furn-dark"/><rect x="900" y="64" width="34" height="60" class="furn-dark"/><rect x="940" y="64" width="34" height="60" class="furn-dark"/>
+    <rect x="860" y="140" width="34" height="60" class="furn-dark"/><rect x="900" y="140" width="34" height="60" class="furn-dark"/>
+    <g stroke="#94a3b8" stroke-width="1"><path d="M864 72h26M864 80h26M864 88h26M864 96h26M864 104h26M864 112h26"/><path d="M904 72h26M904 80h26M904 88h26M904 96h26M904 104h26M904 112h26"/><path d="M944 72h26M944 80h26M944 88h26M944 96h26M944 104h26M944 112h26"/><path d="M864 148h26M864 156h26M864 164h26M864 172h26M864 180h26M864 188h26"/><path d="M904 148h26M904 156h26M904 164h26M904 172h26M904 180h26M904 188h26"/></g>
+  </g>
+  <!-- Kitchen: counter, sink, fridge, island -->
+  <g>
+    <rect x="1010" y="48" width="144" height="30" class="furn"/>
+    <rect x="1060" y="52" width="36" height="22" rx="3" class="fixture"/><circle cx="1078" cy="58" r="2" fill="#64748b"/>
+    <rect x="1116" y="50" width="34" height="26" class="furn-dark"/>
+    <rect x="1010" y="48" width="30" height="110" class="furn"/>
+    <rect x="1050" y="120" width="80" height="34" rx="4" class="furn-dark"/>
+    <g class="chair"><circle cx="1060" cy="170" r="7"/><circle cx="1090" cy="170" r="7"/><circle cx="1120" cy="170" r="7"/></g>
+  </g>
+  <!-- Open office: desk clusters (pods of 4) -->
+  <g id="pods">
+    <g class="furn">
+      <rect x="480" y="300" width="60" height="30"/><rect x="540" y="300" width="60" height="30"/>
+      <rect x="480" y="330" width="60" height="30"/><rect x="540" y="330" width="60" height="30"/>
+    </g>
+    <g class="chair"><rect x="498" y="280" width="24" height="14" rx="5"/><rect x="558" y="280" width="24" height="14" rx="5"/><rect x="498" y="366" width="24" height="14" rx="5"/><rect x="558" y="366" width="24" height="14" rx="5"/></g>
+    <g class="furn">
+      <rect x="660" y="300" width="60" height="30"/><rect x="720" y="300" width="60" height="30"/>
+      <rect x="660" y="330" width="60" height="30"/><rect x="720" y="330" width="60" height="30"/>
+    </g>
+    <g class="chair"><rect x="678" y="280" width="24" height="14" rx="5"/><rect x="738" y="280" width="24" height="14" rx="5"/><rect x="678" y="366" width="24" height="14" rx="5"/><rect x="738" y="366" width="24" height="14" rx="5"/></g>
+    <g class="furn">
+      <rect x="840" y="300" width="60" height="30"/><rect x="900" y="300" width="60" height="30"/>
+      <rect x="840" y="330" width="60" height="30"/><rect x="900" y="330" width="60" height="30"/>
+    </g>
+    <g class="chair"><rect x="858" y="280" width="24" height="14" rx="5"/><rect x="918" y="280" width="24" height="14" rx="5"/><rect x="858" y="366" width="24" height="14" rx="5"/><rect x="918" y="366" width="24" height="14" rx="5"/></g>
+
+    <g class="furn">
+      <rect x="480" y="440" width="60" height="30"/><rect x="540" y="440" width="60" height="30"/>
+      <rect x="480" y="470" width="60" height="30"/><rect x="540" y="470" width="60" height="30"/>
+    </g>
+    <g class="chair"><rect x="498" y="420" width="24" height="14" rx="5"/><rect x="558" y="420" width="24" height="14" rx="5"/><rect x="498" y="506" width="24" height="14" rx="5"/><rect x="558" y="506" width="24" height="14" rx="5"/></g>
+    <g class="furn">
+      <rect x="660" y="440" width="60" height="30"/><rect x="720" y="440" width="60" height="30"/>
+      <rect x="660" y="470" width="60" height="30"/><rect x="720" y="470" width="60" height="30"/>
+    </g>
+    <g class="chair"><rect x="678" y="420" width="24" height="14" rx="5"/><rect x="738" y="420" width="24" height="14" rx="5"/><rect x="678" y="506" width="24" height="14" rx="5"/><rect x="738" y="506" width="24" height="14" rx="5"/></g>
+    <g class="furn">
+      <rect x="840" y="440" width="60" height="30"/><rect x="900" y="440" width="60" height="30"/>
+      <rect x="840" y="470" width="60" height="30"/><rect x="900" y="470" width="60" height="30"/>
+    </g>
+    <g class="chair"><rect x="858" y="420" width="24" height="14" rx="5"/><rect x="918" y="420" width="24" height="14" rx="5"/><rect x="858" y="506" width="24" height="14" rx="5"/><rect x="918" y="506" width="24" height="14" rx="5"/></g>
+
+    <!-- lounge / collaboration near south windows -->
+    <rect x="520" y="620" width="120" height="40" rx="8" class="furn"/>
+    <rect x="520" y="700" width="120" height="40" rx="8" class="furn"/>
+    <rect x="680" y="660" width="60" height="60" rx="30" class="furn-dark"/>
+    <g class="chair"><circle cx="760" cy="690" r="9"/><circle cx="660" cy="690" r="9"/><circle cx="710" cy="640" r="9"/><circle cx="710" cy="740" r="9"/></g>
+    <rect x="800" y="640" width="160" height="6" class="furn-dark"/>
+    <g class="chair"><rect x="820" y="660" width="24" height="14" rx="5"/><rect x="868" y="660" width="24" height="14" rx="5"/><rect x="916" y="660" width="24" height="14" rx="5"/></g>
+    <!-- printers / lockers along the wall -->
+    <rect x="960" y="260" width="30" height="40" class="furn-dark"/>
+    <rect x="960" y="540" width="30" height="80" class="furn-dark"/>
+    <!-- phone booths furniture -->
+    <rect x="380" y="588" width="36" height="24" rx="3" class="furn"/>
+    <rect x="380" y="658" width="36" height="24" rx="3" class="furn"/>
+    <rect x="380" y="718" width="36" height="24" rx="3" class="furn"/>
+    <!-- plants -->
+    <circle cx="390" cy="270" r="10" class="furn"/><circle cx="390" cy="270" r="4" fill="#86efac" stroke="none"/>
+    <circle cx="980" cy="730" r="10" class="furn"/><circle cx="980" cy="730" r="4" fill="#86efac" stroke="none"/>
+  </g>
+  <!-- Restrooms -->
+  <g>
+    <rect x="1020" y="256" width="30" height="20" rx="3" class="fixture"/><rect x="1060" y="256" width="30" height="20" rx="3" class="fixture"/>
+    <path d="M1100 380v-80h50" class="partition"/>
+    <rect x="1112" y="306" width="30" height="20" rx="8" class="fixture"/><rect x="1112" y="346" width="30" height="20" rx="8" class="fixture"/>
+    <rect x="1020" y="456" width="30" height="20" rx="3" class="fixture"/><rect x="1060" y="456" width="30" height="20" rx="3" class="fixture"/>
+    <path d="M1100 540v-80h50" class="partition"/>
+    <rect x="1112" y="466" width="30" height="20" rx="8" class="fixture"/><rect x="1112" y="506" width="30" height="20" rx="8" class="fixture"/>
+    <rect x="1020" y="540" width="60" height="10" class="fixture"/>
+  </g>
+  <!-- Storage: shelving -->
+  <g class="furn-dark">
+    <rect x="1050" y="612" width="100" height="16"/><rect x="1050" y="640" width="100" height="16"/>
+    <rect x="1120" y="690" width="30" height="60"/>
+  </g>
+
+  <!-- ===== labels ===== -->
+  <g>
+    <text x="200" y="150" class="room" dy="-70">CONFERENCE A</text><text x="200" y="98" class="area">42 m²</text>
+    <text x="200" y="520" class="room" dy="-200">CONFERENCE B</text><text x="200" y="336" class="area">33 m²</text>
+    <text x="200" y="630" class="room">RECEPTION</text><text x="200" y="648" class="area">47 m²</text>
+    <text x="440" y="178" class="room">OFFICE 1</text>
+    <text x="600" y="178" class="room">OFFICE 2</text>
+    <text x="760" y="178" class="room">OFFICE 3</text>
+    <text x="920" y="226" class="room" dy="-6">SERVER</text>
+    <text x="1080" y="214" class="room">KITCHEN</text>
+    <text x="680" y="580" class="room">OPEN OFFICE</text><text x="680" y="598" class="area">212 m²</text>
+    <text x="1060" y="412" class="room" font-size="12">WC</text>
+    <text x="1060" y="588" class="room" font-size="12">WC</text>
+    <text x="1080" y="720" class="room">STORAGE</text>
+    <text x="402" y="632" class="area" font-size="9">BOOTH</text>
+    <text x="402" y="702" class="area" font-size="9">BOOTH</text>
+    <text x="402" y="754" class="area" font-size="9">BOOTH</text>
+  </g>
+
+  <!-- dimensions -->
+  <g>
+    <path class="dim" d="M40 24H1160M40 18V30M1160 18V30"/><text x="600" y="16" class="dim-text">28.0 m</text>
+    <path class="dim" d="M22 40V760M16 40H28M16 760H28"/><text x="14" y="400" class="dim-text" transform="rotate(-90 14 400)">18.0 m</text>
+  </g>
+
+  <!-- title block -->
+  <g transform="translate(1012 768)">
+    <text x="0" y="12" class="title">GROUND FLOOR</text>
+    <text x="0" y="26" class="sub">SCALE 1:100 · N ↑ · d3-floorplan demo</text>
+  </g>
+</svg>

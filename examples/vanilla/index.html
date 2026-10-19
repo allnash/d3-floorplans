@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>d3-floorplan · vanilla example</title>
+    <!--
+      Embeddable build: one script tag, no bundler, no React.
+      From npm/CDN you would use:
+        <link rel="stylesheet" href="https://unpkg.com/d3-floorplan/dist/d3-floorplan.css">
+        <script src="https://unpkg.com/d3-floorplan/dist/d3-floorplan.iife.js"></script>
+      This example points at the local build. Run `npm run build` first, then
+      serve the repo root (e.g. `npx serve .`) and open /examples/vanilla/.
+    -->
+    <link rel="stylesheet" href="../../dist/d3-floorplan.css" />
+    <script src="../../dist/d3-floorplan.iife.js"></script>
+    <style>
+      body { margin: 0; font: 14px/1.4 system-ui, sans-serif; background: #f5f7fb; color: #0f172a; }
+      header { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding: 12px 16px; background: #fff; border-bottom: 1px solid #e2e8f0; }
+      header h1 { font-size: 15px; margin: 0 16px 0 0; }
+      button { font: inherit; padding: 6px 12px; border: 1px solid #cbd5e1; background: #fff; border-radius: 6px; cursor: pointer; }
+      button[aria-pressed='true'] { background: #0f172a; color: #fff; border-color: #0f172a; }
+      main { display: grid; grid-template-columns: 1fr 320px; gap: 16px; padding: 16px; }
+      #plan { border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; }
+      pre { margin: 0; padding: 12px; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 11px; max-height: 70vh; overflow: auto; }
+      @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>d3-floorplan (vanilla)</h1>
+      <button data-mode="select" aria-pressed="true">Select</button>
+      <button data-mode="drawZone">Draw zone</button>
+      <button data-mode="placeSensor">Place sensor</button>
+      <button id="fit">Fit</button>
+      <span id="status" style="margin-left:auto;color:#64748b"></span>
+    </header>
+    <main>
+      <div id="plan"></div>
+      <pre id="json"></pre>
+    </main>
+
+    <script>
+      // `Floorplan` is the global exposed by the IIFE build.
+      const { createFloorplan } = Floorplan;
+
+      let floor = {
+        id: 'ground',
+        name: 'Ground floor',
+        image: { url: '../../assets/floorplans/ground-floor.svg', x: 0, y: 0, w: 1200, h: 800 },
+        zones: [
+          { id: 'conf-a', name: 'Conference A', color: '#8b5cf6', points: [[44, 44], [356, 44], [356, 296], [44, 296]] },
+          { id: 'open', name: 'Open office', points: [[444, 244], [996, 244], [996, 756], [444, 756]] },
+        ],
+        sensors: [{ id: 'gw-1', name: 'Gateway 1', x: 664, y: 384, w: 32, h: 32 }],
+      };
+
+      const plan = createFloorplan(document.getElementById('plan'), { mode: 'select' });
+      plan.setFloor(floor);
+
+      const json = document.getElementById('json');
+      const status = document.getElementById('status');
+      const render = () => (json.textContent = JSON.stringify(floor, null, 2));
+      render();
+
+      plan.on('change', (e) => {
+        floor = e.floor; // always a fresh object
+        status.textContent = e.type;
+        render();
+      });
+      plan.on('modechange', (mode) => {
+        document.querySelectorAll('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+      });
+      plan.on('select', (sel) => (status.textContent = sel ? `${sel.kind} ${sel.id}` : ''));
+
+      document.querySelectorAll('[data-mode]').forEach((b) => b.addEventListener('click', () => plan.setMode(b.dataset.mode)));
+      document.getElementById('fit').addEventListener('click', () => plan.zoomToFit());
+    </script>
+  </body>
+</html>

@@ -1,4 +1,0 @@
-default:
-  - 'less'
-  - 'browserify:app'
-  - 'uglify:all'

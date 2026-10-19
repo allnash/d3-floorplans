@@ -1,28 +1,102 @@
 {
-  "name": "d3.v4.floorplan",
-  "version": "0.0.1",
-  "description": "A map-like interactive set of [reusable charts](http://bost.ocks.org/mike/chart/) for layering visualizations on a common local coordinate system like floor plans.",
-  "main": "index.js",
+  "name": "d3-floorplan",
+  "version": "1.0.0",
+  "description": "Interactive floor plans for the web: zones, sensors, pan/zoom. Framework-agnostic core built on D3 v7 with a React component and an embeddable script-tag bundle.",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist/d3-floorplan.js",
+  "module": "./dist/d3-floorplan.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/d3-floorplan.iife.js",
+  "jsdelivr": "./dist/d3-floorplan.iife.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/d3-floorplan.js"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react.js"
+    },
+    "./style.css": "./dist/d3-floorplan.css",
+    "./iife": "./dist/d3-floorplan.iife.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "assets",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "vite --config examples/react/vite.config.ts",
+    "build": "npm run build:lib && npm run build:iife",
+    "build:lib": "vite build",
+    "build:iife": "vite build --config vite.iife.config.ts",
+    "build:demo": "vite build --config examples/react/vite.config.ts",
+    "preview:demo": "vite preview --config examples/react/vite.config.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dciarletta/d3-floorplan.git"
+    "url": "git+https://github.com/allnash/d3-floorplans.git"
   },
+  "keywords": [
+    "d3",
+    "floorplan",
+    "floor-plan",
+    "indoor-map",
+    "svg",
+    "react",
+    "zones",
+    "sensors",
+    "iot"
+  ],
   "author": "Nash Gadre",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/dciarletta/d3-floorplan/issues"
+    "url": "https://github.com/allnash/d3-floorplans/issues"
   },
-  "homepage": "",
+  "homepage": "https://allnash.github.io/d3-floorplans/",
   "dependencies": {
-    "d3": "4.13.0"
+    "d3-drag": "^3.0.0",
+    "d3-polygon": "^3.0.1",
+    "d3-selection": "^3.0.0",
+    "d3-zoom": "^3.0.0",
+    "motion": "^12.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "browserify": "^10.2.6",
-    "grunt": "^0.4.5",
-    "grunt-browserify": "^3.8.0",
-    "grunt-contrib-less": "^1.0.1",
-    "grunt-contrib-uglify": "^0.9.1",
-    "load-grunt-config": "^0.17.1",
-    "time-grunt": "^1.2.1"
+    "@types/d3-drag": "^3.0.7",
+    "@types/d3-polygon": "^3.0.2",
+    "@types/d3-selection": "^3.0.11",
+    "@types/d3-zoom": "^3.0.8",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "jsdom": "^30.1.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^5.9.0",
+    "vite": "^8.3.4",
+    "vite-plugin-dts": "^5.1.2",
+    "vitest": "^5.0.5"
   }
 }
