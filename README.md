@@ -10,7 +10,21 @@ Interactive floor plans for the web. Draw and edit zones, place and drag sensors
 
 **Live demo:** https://allnash.github.io/d3-floorplans/
 
-![d3-floorplan demo](images/sample.png)
+![d3-floorplan demo showing an office floor plan with coloured zones, sensors and the inspector sidebar](images/d3-screenshot.png)
+
+## Using the demo
+
+Run `npm run dev` (or open the live demo) and you get the editor shown above.
+
+- **Floor tabs** at the top switch between floors. Edits are kept per floor.
+- **Select** mode (default, `V`): click a zone or sensor to select it. Drag a zone to move it, hover a zone and drag its corner handles to reshape it, drag a sensor to reposition it. Scroll to zoom, drag the background to pan.
+- **Draw zone** (`Z`): click to place vertices. Click the first vertex, double-click, or press `Enter` to close the shape. `Esc` cancels. The new zone is selected and the editor returns to Select mode.
+- **Place sensor** (`S`): click anywhere on the plan to drop a sensor.
+- **Right-click** a zone or sensor to rename or delete it. Right-click the background to start a zone or place a sensor at that spot, or to zoom to fit.
+- **Toolbar**: undo/redo (`⌘Z` / `⇧⌘Z`), zoom in/out, fit to view (`F`), and toggles for labels, animation and read-only mode.
+- **Inspector** (right panel): rename the selection, change a zone's colour, or delete it. The Zones and Sensors lists select on click.
+- **Floor JSON**: shows the live `Floor` object. Copy it to seed your own app; it is the exact shape `FloorPlan` and `createFloorplan` accept.
+- `Delete` or `Backspace` removes the selection. `Esc` deselects.
 
 ## Install
 
